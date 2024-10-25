@@ -6,5 +6,4 @@ class Entity():
         self.on_load = ondload
 
     def init(self):
-        #self.game
         pass

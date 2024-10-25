@@ -6,3 +6,6 @@ class Simbol(entity):
 
     def init(self):
         self.game
+
+    def do(self, event):
+        pass
