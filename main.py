@@ -1,5 +1,5 @@
-from config.bootstrap import bootstrap
+from config.bootstrap import Bootstrap
 
 if __name__ == "__main__":
-   app = bootstrap()
+   app = Bootstrap()
    app.run()
