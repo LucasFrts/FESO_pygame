@@ -12,6 +12,5 @@ class Flow(Entity):
         pass
 
     def do(self, event):
-        print("entrei aqui no XESQQQQ")
         if event == self.game.QUIT:
             self.running = False

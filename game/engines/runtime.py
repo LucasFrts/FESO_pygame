@@ -10,8 +10,10 @@ class Runtime():
 
     def start(self, *args):
         self.containers = list(args)
-        self.pygame.init()
     
+        for container in self.containers:
+            container.start()
+        
         flow = Flow(self.pygame)
         flow.init()
 

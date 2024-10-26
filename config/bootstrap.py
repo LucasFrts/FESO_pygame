@@ -10,15 +10,12 @@ class Bootstrap():
         pass
 
     def run(self):
-        setting = Setting()
-        setting.screen = pygame.display.set_mode((800,800))
-        setting.clock = pygame.time.Clock()
-        setting.dt = setting.clock.tick(60) / 1000
+        game = pygame
+        game.init()
         
-        pygame.display.set_caption('BreakCode')
+        setting = Setting(game)
+        start_menu = StartMenu(setting)
 
-        start_menu = StartMenu()
-
-        runtime = Runtime(setting, pygame)        
+        runtime = Runtime(setting, game)        
         runtime.start(start_menu)
         return;
