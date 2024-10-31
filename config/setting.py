@@ -6,9 +6,9 @@ class Setting():
 
     def __init__(self, pygame):
         fonts = lambda: None
-        fonts.big = pygame.font.SysFont('Comic Sans MS', 30)
-        fonts.medium = pygame.font.SysFont('Comic Sans MS', 22)
-        fonts.small = pygame.font.SysFont('Comic Sans MS', 14)
+        fonts.big = pygame.font.Font('./assets/fonts/PressStart2P.ttf', 30)
+        fonts.medium = pygame.font.Font('./assets/fonts/PressStart2P.ttf', 22)
+        fonts.small = pygame.font.Font('./assets/fonts/PressStart2P.ttf', 14)
         
         self.fonts = fonts
         self.screen = pygame.display.set_mode((800,800))
