@@ -16,11 +16,11 @@ class Container:
             if entity.on_load:
                 entity.init()
 
-    def setup(self):
+    def draw(self):
         pass
 
     def render(self):
-        self.setup()
+        self.draw()
         for entity in self.entities:
             if hasattr(entity, 'draw'):
                 entity.draw() 
