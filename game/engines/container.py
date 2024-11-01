@@ -6,7 +6,6 @@ class Container:
     def __init__(self, pygame, setting):
         self.setting = setting
         self.game = pygame
-        self.setup()
         
 
     def register(self, entity):
@@ -19,3 +18,9 @@ class Container:
 
     def setup(self):
         pass
+
+    def render(self):
+        self.setup()
+        for entity in self.entities:
+            if hasattr(entity, 'draw'):
+                entity.draw() 

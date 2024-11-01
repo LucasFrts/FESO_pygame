@@ -8,3 +8,6 @@ class Entity():
 
     def init(self):
         pass
+
+    def draw(self):
+        pass

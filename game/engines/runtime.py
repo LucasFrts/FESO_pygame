@@ -25,7 +25,9 @@ class Runtime():
                     for registered in artefact.entities:
                         if event.type in registered.events:
                             registered.do(event.type)
-
+            for container in self.containers:
+                container.render()
+                
             self.pygame.display.flip()
             
         self.pygame.quit()

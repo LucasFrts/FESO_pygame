@@ -2,17 +2,8 @@ from game.engines.container import Container
 from game.entities.button import Button
 from game.entities.flow import Flow
 class StartMenu(Container):
-    def setup(self):
-        self.setting.screen.fill("#0b0b0b")
-        titulo_texto = "BreakCode"
-
-        titulo_surface = self.setting.fonts.big.render(titulo_texto, True, (0, 255, 0))  # Verde para o título
-
-
-        titulo_rect = titulo_surface.get_rect(center=(self.setting.screen.get_width() // 2, 150))
-
-        self.setting.screen.blit(titulo_surface, titulo_rect)
-        
+    def __init__(self, pygame, setting):
+        super().__init__(pygame, setting)
         startBtn = Button(self.game, self.setting, 300, 200, 200, 50, "Iniciar Jogo", (50, 30, 30), (100, 50, 50), self.startGame)
         tutorialBtn = Button(self.game, self.setting, 300, 270, 200, 50, "Tutorial", (50, 30, 30), (100, 50, 50), self.openTutorial)
         rankingBtn = Button(self.game, self.setting, 300, 340, 200, 50, "Ranking", (50, 30, 30), (100, 50, 50), self.openRanking)
@@ -23,7 +14,18 @@ class StartMenu(Container):
         self.entities.append(rankingBtn)
         self.entities.append(closeBtn)
 
+    def setup(self):
+        self.setting.screen.fill("#0b0b0b")
+        title_text = "BreakCode"
 
+        title_surface = self.setting.fonts.big.render(title_text, True, (0, 255, 0))  # Verde para o título
+
+        title_rect = title_surface.get_rect(center=(self.setting.screen.get_width() // 2, 150))
+
+        self.setting.screen.blit(title_surface, title_rect)
+    
+    def render(self):
+        super().render()
 
     def startGame(self):
         print("Iniciar Jogo!")

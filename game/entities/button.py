@@ -13,12 +13,16 @@ class Button(Entity):
         self.action = action
         self.pressionado = False
         self.setting = setting
+        self.is_hovered = False  # Controle de hover
         self.events.append(self.game.MOUSEBUTTONDOWN)
         self.events.append(self.game.MOUSEBUTTONUP)
-    
-    def init(self):
+        self.events.append(self.game.MOUSEMOTION)  # Adiciona evento de movimento do mouse
+
+    def draw(self):
         mouse = self.game.mouse.get_pos()
-        cor_atual = self.color_hover if (self.x + self.width > mouse[0] > self.x and self.y + self.height > mouse[1] > self.y) else self.color_btn
+        self.is_hovered = (self.x + self.width > mouse[0] > self.x and self.y + self.height > mouse[1] > self.y)
+
+        cor_atual = self.color_hover if self.is_hovered else self.color_btn
         self.game.draw.rect(self.setting.screen, cor_atual, (self.x, self.y, self.width, self.height), border_radius=20)
 
         texto_surf = self.setting.fonts.medium.render(self.text, True, (255, 255, 255))
@@ -27,11 +31,10 @@ class Button(Entity):
 
     def do(self, event):
         if event == self.game.MOUSEBUTTONDOWN:
-            mouse = self.game.mouse.get_pos()
-            if self.x + self.width > mouse[0] > self.x and self.y + self.height > mouse[1] > self.y:
+            if self.is_hovered: 
                 self.pressionado = True
         elif event == self.game.MOUSEBUTTONUP:
             if self.pressionado:
                 self.pressionado = False
-                if self.action:
-                    self.action()  
+                if self.is_hovered and self.action: 
+                    self.action()
