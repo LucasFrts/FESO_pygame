@@ -1,8 +1,7 @@
 from game.entities.entity import Entity
-import pygame
+
 class Flow(Entity):
     running = False
-    events = []
     def __init__(self, pygame):
         super().__init__(pygame)
         self.events.append(self.game.QUIT)

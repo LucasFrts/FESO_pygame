@@ -14,7 +14,7 @@ class Bootstrap():
         game.init()
         
         setting = Setting(game)
-        start_menu = StartMenu(setting)
+        start_menu = StartMenu(pygame, setting)
 
         runtime = Runtime(setting, game)        
         runtime.start(start_menu)

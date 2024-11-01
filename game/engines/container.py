@@ -3,8 +3,9 @@ class Container:
     setting = None
     entities = []
 
-    def __init__(self, setting):
+    def __init__(self, pygame, setting):
         self.setting = setting
+        self.game = pygame
         self.setup()
         
 
