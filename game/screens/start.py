@@ -4,10 +4,10 @@ from game.entities.flow import Flow
 class StartMenu(Container):
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
-        startBtn = Button(self.game, self.setting, 250, 200, 300, 50, "Iniciar Jogo", (50, 30, 30), (100, 50, 50), self.startGame)
-        tutorialBtn = Button(self.game, self.setting, 250, 270, 300, 50, "Tutorial", (50, 30, 30), (100, 50, 50), self.openTutorial)
-        rankingBtn = Button(self.game, self.setting, 250, 340, 300, 50, "Ranking", (50, 30, 30), (100, 50, 50), self.openRanking)
-        closeBtn = Button(self.game, self.setting, 250, 410, 300, 50, "Sair", (50, 30, 30), (100, 50, 50), self.close)
+        startBtn    = self.menuButtonFactory(200, "Iniciar Jogo", self.startGame)
+        tutorialBtn = self.menuButtonFactory(270, "Tutorial", self.openTutorial)
+        rankingBtn  = self.menuButtonFactory(340, "Ranking", self.openRanking) 
+        closeBtn    = self.menuButtonFactory(410, "Sair", self.close)
         
         self.entities.append(startBtn)
         self.entities.append(tutorialBtn)
@@ -16,11 +16,9 @@ class StartMenu(Container):
 
     def draw(self):
         self.setting.screen.fill("#0b0b0b")
-        title_text = "BreakCode"
-
-        title_surface = self.setting.fonts.big.render(title_text, True, (0, 255, 0))
-
-        title_rect = title_surface.get_rect(center=(self.setting.screen.get_width() // 2, 150))
+        title_text      = "BreakCode"
+        title_surface   = self.setting.fonts.bigger.render(title_text, True, (0, 255, 0))
+        title_rect      = title_surface.get_rect(center=(self.setting.screen.get_width() // 2, 150))
 
         self.setting.screen.blit(title_surface, title_rect)
     
@@ -37,5 +35,7 @@ class StartMenu(Container):
         print("Abrir Ranking!")
 
     def close(self):
-        flow = next((flow for flow in self.entities if isinstance(flow, Flow)), None)
-        flow.running = False
+        flow            = next((flow for flow in self.entities if isinstance(flow, Flow)), None)
+        flow.running    = False
+    def menuButtonFactory(self, position_y, text, action):
+        return Button(self.game, self.setting, 250, position_y, 300, 50, text, self.setting.colors.brown, self.setting.colors.light_brown, action)

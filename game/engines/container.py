@@ -4,8 +4,8 @@ class Container:
     entities = []
 
     def __init__(self, pygame, setting):
-        self.setting = setting
-        self.game = pygame
+        self.setting    = setting
+        self.game       = pygame
         
 
     def register(self, entity):

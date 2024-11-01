@@ -25,7 +25,7 @@ class Button(Entity):
         cor_atual = self.color_hover if self.is_hovered else self.color_btn
         self.game.draw.rect(self.setting.screen, cor_atual, (self.x, self.y, self.width, self.height), border_radius=20)
 
-        texto_surf = self.setting.fonts.medium.render(self.text, True, (255, 255, 255))
+        texto_surf = self.setting.fonts.medium.render(self.text, True, self.setting.colors.white)
         texto_rect = texto_surf.get_rect(center=(self.x + self.width // 2, self.y + self.height // 2))
         self.setting.screen.blit(texto_surf, texto_rect)
 

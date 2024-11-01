@@ -5,8 +5,8 @@ class Runtime():
     settings = None
 
     def __init__(self, setting, pygame):
-        self.pygame = pygame
-        self.settings = setting
+        self.pygame     = pygame
+        self.settings   = setting
 
     def start(self, *args):
         self.containers = list(args)
@@ -27,7 +27,7 @@ class Runtime():
                             registered.do(event.type)
             for container in self.containers:
                 container.render()
-                
+
             self.pygame.display.flip()
             
         self.pygame.quit()

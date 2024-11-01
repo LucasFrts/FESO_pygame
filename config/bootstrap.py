@@ -10,12 +10,13 @@ class Bootstrap():
         pass
 
     def run(self):
-        game = pygame
-        game.init()
+        pygame.init()
+        game        = pygame
         
-        setting = Setting(game)
-        start_menu = StartMenu(pygame, setting)
+        setting     = Setting(game)
+        runtime     = Runtime(setting, game)  
 
-        runtime = Runtime(setting, game)        
+        start_menu  = StartMenu(pygame, setting)
+
         runtime.start(start_menu)
         return;
