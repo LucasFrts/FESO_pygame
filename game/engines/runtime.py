@@ -1,4 +1,3 @@
-from game.entities.flow import Flow
 class Runtime():
     containers = []
     pygame = None
@@ -13,20 +12,18 @@ class Runtime():
     
         for container in self.containers:
             container.start()
-        
-        flow = Flow(self.pygame)
-        flow.init()
 
-        self.containers[0].entities.append(flow)
-
-        while flow.running:
+        while self.settings.flow.running:
             for event in self.pygame.event.get():
                 for artefact in self.containers:
                     for registered in artefact.entities:
-                        if event.type in registered.events:
+                        if event.type in registered.events and artefact.stage == self.settings.flow.stage:
+                            print(artefact.entities)
                             registered.do(event.type)
+
             for container in self.containers:
-                container.render()
+                if container.stage == self.settings.flow.stage:
+                    container.render()
 
             self.pygame.display.flip()
             

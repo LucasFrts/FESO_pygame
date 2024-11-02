@@ -1,4 +1,5 @@
 class Container:
+    stage = None
     game = None
     setting = None
     entities = []
@@ -6,7 +7,7 @@ class Container:
     def __init__(self, pygame, setting):
         self.setting    = setting
         self.game       = pygame
-        
+        self.entities.append(setting.flow)
 
     def register(self, entity):
         self.entities.append(entity)

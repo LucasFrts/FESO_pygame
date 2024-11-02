@@ -1,6 +1,8 @@
 from game.engines.runtime import Runtime
 from config.setting import Setting
 from game.screens.start import StartMenu
+from game.screens.game import Game
+from game.entities.flow import Flow
 
 import pygame
 
@@ -10,13 +12,19 @@ class Bootstrap():
         pass
 
     def run(self):
-        pygame.init()
         game        = pygame
+        flow        = Flow(game)
         
-        setting     = Setting(game)
-        runtime     = Runtime(setting, game)  
+        game.init()
+        flow.init()
 
-        start_menu  = StartMenu(pygame, setting)
+        setting         = Setting(game)
+        setting.flow    = flow
+        
+        runtime         = Runtime(setting, game)  
 
-        runtime.start(start_menu)
+        start_menu  = StartMenu(game, setting)
+        game        = Game(game, setting)
+
+        runtime.start(start_menu, game)
         return;

@@ -13,10 +13,10 @@ class Button(Entity):
         self.action = action
         self.pressionado = False
         self.setting = setting
-        self.is_hovered = False  # Controle de hover
+        self.is_hovered = False  
         self.events.append(self.game.MOUSEBUTTONDOWN)
         self.events.append(self.game.MOUSEBUTTONUP)
-        self.events.append(self.game.MOUSEMOTION)  # Adiciona evento de movimento do mouse
+        self.events.append(self.game.MOUSEMOTION)
 
     def draw(self):
         mouse = self.game.mouse.get_pos()

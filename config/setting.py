@@ -4,6 +4,7 @@ class Setting():
     clock = None
     fonts = None
     colors = None
+    flow = None
 
     def __init__(self, pygame):
         fonts               = lambda: None
