@@ -14,5 +14,5 @@ class Flow(Entity):
         pass
 
     def do(self, event):
-        if event == self.game.QUIT:
+        if event.type == self.game.QUIT:
             self.running = False

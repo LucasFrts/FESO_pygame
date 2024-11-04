@@ -18,8 +18,7 @@ class Runtime():
                 for artefact in self.containers:
                     for registered in artefact.entities:
                         if event.type in registered.events and artefact.stage == self.settings.flow.stage:
-                            print(artefact.entities)
-                            registered.do(event.type)
+                            registered.do(event)
 
             for container in self.containers:
                 if container.stage == self.settings.flow.stage:

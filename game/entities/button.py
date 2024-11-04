@@ -30,10 +30,10 @@ class Button(Entity):
         self.setting.screen.blit(texto_surf, texto_rect)
 
     def do(self, event):
-        if event == self.game.MOUSEBUTTONDOWN:
+        if event.type == self.game.MOUSEBUTTONDOWN:
             if self.is_hovered: 
                 self.pressionado = True
-        elif event == self.game.MOUSEBUTTONUP:
+        elif event.type == self.game.MOUSEBUTTONUP:
             if self.pressionado:
                 self.pressionado = False
                 if self.is_hovered and self.action: 
