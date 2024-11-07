@@ -20,7 +20,7 @@ class StartMenu(Container):
         self.setting.screen.fill("#0b0b0b")
         title_text      = "BreakCode"
         title_surface   = self.setting.fonts.bigger.render(title_text, True, self.setting.colors.green)
-        title_rect      = title_surface.get_rect(center=(self.setting.screen.get_width() // 2, 150))
+        title_rect      = title_surface.get_rect(center=(self.setting.screen.get_width() // 2, 100))
 
         self.setting.screen.blit(title_surface, title_rect)
 
@@ -37,4 +37,4 @@ class StartMenu(Container):
         self.setting.flow.running    = False
     
     def menuButtonFactory(self, position_y, text, action):
-        return Button(self.game, self.setting, 250, position_y, 300, 50, text, self.setting.colors.brown, self.setting.colors.light_brown, action)
+        return Button(self.game, self.setting, 440, position_y, 300, 50, text, self.setting.colors.brown, self.setting.colors.light_brown, action)
