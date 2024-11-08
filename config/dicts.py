@@ -51,7 +51,7 @@ curiosities = [
     {"text": "Este animal marinho é conhecido por sua grande inteligência e por viver em grupos.", "answer": "BALEIA"},
     {"text": "Esses insetos trabalham juntos para construir colmeias complexas.", "answer": "ABELHAS"},
     {"text": "Este animal produz uma lã muito utilizada para fabricação de roupas.", "answer": "OVELHA"},
-    {"text": "Este animal vive na água, mas respira através de pulmões.", "answer": "PEIXE BOI"},
+    {"text": "Este animal vive na água, mas respira através de pulmões.", "answer": "PEIXEBOI"},
     {"text": "Esse animal possui penas impermeáveis que o ajudam a se manter seco.", "answer": "PATO"},
     {"text": "Este animal, símbolo da paz, é conhecido por sua cor branca e voo gracioso.", "answer": "POMBA"},
     {"text": "Este animal possui garras afiadas e uma habilidade incrível de escalar árvores.", "answer": "GATO"},

@@ -1,11 +1,15 @@
 from game.engines.container import Container
 from game.entities.input_box import InputBox
 from config.dicts import letter_images, curiosities
+from database.db import insert_ranking
 import random
 
 class Game(Container):
     stage = [1]
     entities = []
+    level = 1
+    points = 0
+    points_multiplicator = 10
 
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
@@ -19,7 +23,7 @@ class Game(Container):
     def draw(self):
         self.setting.screen.fill("#0b0b0b")
 
-        points_text = "Pts: 10"  
+        points_text = f"Pts: {self.points}"  
         points_surface = self.setting.fonts.small.render(points_text, True, (0, 255, 0))
         self.setting.screen.blit(points_surface, (20, 20))
 
@@ -48,8 +52,22 @@ class Game(Container):
             if isinstance(entity, InputBox):
                 inputed_text += entity.text
         if inputed_text == self.answer:
-            self.time_left += self.initial_time
-            self.generateInputAndText()
+            self.points += self.points_multiplicator * self.time_left
+            if len(self.curiosities) > 0:
+                self.time_left += self.initial_time
+                self.level += 1
+                self.generateInputAndText()
+            else:
+                insert_ranking(self.level, self.points, True)
+                #aqui vamos ter que exibir uma tela de vitoria, mostrar a quantidade de pontos e permitir retornar para o menu ou jogar novamente
+
+        if self.time_left == 0:
+            #tem que exibir a mensagem de game over
+            #para recomeçar podemos ter algumas alterenativas como resetar os campos e regerar tudo para o jogo poder recomeçar
+            #por enquanto vou apenas salvar os resultados e fechar o jogo
+            insert_ranking(self.level, self.points, False)
+            self.setting.flow.running = False
+        
 
     def generateInputAndText(self):
         curiosity = random.choice(self.curiosities)
