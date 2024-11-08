@@ -1,7 +1,7 @@
 import sqlite3
 
 def get_connection():
-    return sqlite3.connect("./database/game.db")
+    return sqlite3.connect("./database/sqlite/game.db")
 
 def insert_ranking(levels, score, finished):
     cursor  = get_connection()
