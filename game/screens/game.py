@@ -42,10 +42,13 @@ class Game(Container):
         description_rect = description_surface.get_rect(center=(self.setting.screen.get_width() // 2, 100))
         self.setting.screen.blit(description_surface, description_rect)
 
-        x_pos = 240
-        for image in self.loaded_images:
+        total_width = len(self.answer) * 100 - 20
+        screen_center_x = self.setting.screen.get_width() // 2
+        start_x = screen_center_x - (total_width // 2)  
+
+        for i, image in enumerate(self.loaded_images):
+            x_pos = start_x + i * 100
             self.setting.screen.blit(image, (x_pos, 200))
-            x_pos += 100 
         
         inputed_text = "";
         for entity in self.entities:
@@ -54,7 +57,7 @@ class Game(Container):
         if inputed_text == self.answer:
             self.points += self.points_multiplicator * self.time_left
             if len(self.curiosities) > 0:
-                self.time_left += self.initial_time
+                self.time_left += 30
                 self.level += 1
                 self.generateInputAndText()
             else:
@@ -65,7 +68,9 @@ class Game(Container):
             #tem que exibir a mensagem de game over
             #para recomeçar podemos ter algumas alterenativas como resetar os campos e regerar tudo para o jogo poder recomeçar
             #por enquanto vou apenas salvar os resultados e fechar o jogo
-            insert_ranking(self.level, self.points, False)
+            if self.points > 0:
+                insert_ranking(self.level, self.points, False)
+
             self.setting.flow.running = False
         
 
@@ -76,17 +81,21 @@ class Game(Container):
         self.curiosities.remove(curiosity)
         self.animal_images = []
         self.entities = []
+
         for letter in self.answer:
             letter_dict = [letter_dic for letter_dic in letter_images if letter_dic["letter"] == letter.lower()][0]
             self.animal_images.append(random.choice(letter_dict["images"]))
-        
+
         self.loaded_images = [
             self.game.transform.scale(self.game.image.load(img_path), (80, 80)) for img_path in self.animal_images
         ]
 
-        x_offset = 240
-        i = 0
-        for letter in self.answer:
-            input_box = InputBox(self.game, self.setting, x_offset + i * 100, 400, 80, 80, letter)
+        total_width = len(self.answer) * 100 - 20 
+        screen_center_x = self.setting.screen.get_width() // 2
+        start_x = screen_center_x - (total_width // 2)  
+
+        for i, letter in enumerate(self.answer):
+            x_pos = start_x + i * 100
+            self.setting.screen.blit(self.loaded_images[i], (x_pos, 200))
+            input_box = InputBox(self.game, self.setting, x_pos, 400, 80, 80, letter)
             self.entities.append(input_box)
-            i+=1
