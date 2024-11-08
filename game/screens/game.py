@@ -1,39 +1,20 @@
 from game.engines.container import Container
-from game.entities.input_box import InputBox  # Supondo que você tenha uma classe InputBox para as entradas de letras
+from game.entities.input_box import InputBox
+from config.dicts import letter_images, curiosities
+import random
 
 class Game(Container):
-    stage = 1
+    stage = [1]
     entities = []
 
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
-        self.answer = "PASSARO"
         self.initial_time = 60
         self.time_left = self.initial_time
-        self.last_time_update = pygame.time.get_ticks()  # Para controlar o tempo
-
-        # Definir a posição inicial para as imagens dos animais
-        self.animal_images = [
-            './assets/images/animals/peixe.jpg',
-            './assets/images/animals/gato.jpg',
-            './assets/images/animals/sapo.jpg',
-            './assets/images/animals/sapo.jpg',
-            './assets/images/animals/gato.jpg',
-            './assets/images/animals/coruja.jpg',
-            './assets/images/animals/macaco.jpg'
-        ]
+        self.last_time_update = pygame.time.get_ticks()
+        self.curiosities = curiosities
+        self.generateInputAndText()
         
-        self.loaded_images = [
-            pygame.transform.scale(pygame.image.load(img_path), (80, 80)) for img_path in self.animal_images
-        ]
-
-        # Criar os input boxes para as letras
-        x_offset = 240
-        i = 0
-        for letter in self.answer:
-            input_box = InputBox(pygame, setting, x_offset + i * 100, 400, 80, 80, letter)
-            self.entities.append(input_box)
-            i+=1
 
     def draw(self):
         self.setting.screen.fill("#0b0b0b")
@@ -53,8 +34,7 @@ class Game(Container):
         time_surface = self.setting.fonts.small.render(time_text, True, (0, 255, 0))
         self.setting.screen.blit(time_surface, (self.setting.screen.get_width() - 200, 20))
 
-        description_text = "Esse animal é conhecido por sua capacidade de voar e costuma ser visto em bandos."
-        description_surface = self.setting.fonts.smaller.render(description_text, True, (0, 255, 0))
+        description_surface = self.setting.fonts.smaller.render(self.description_text, True, (0, 255, 0))
         description_rect = description_surface.get_rect(center=(self.setting.screen.get_width() // 2, 100))
         self.setting.screen.blit(description_surface, description_rect)
 
@@ -68,5 +48,27 @@ class Game(Container):
             if isinstance(entity, InputBox):
                 inputed_text += entity.text
         if inputed_text == self.answer:
-            print("ganhou uhuuull")
+            self.time_left += self.initial_time
+            self.generateInputAndText()
 
+    def generateInputAndText(self):
+        curiosity = random.choice(self.curiosities)
+        self.answer = curiosity["answer"]
+        self.description_text = curiosity["text"]
+        self.curiosities.remove(curiosity)
+        self.animal_images = []
+        self.entities = []
+        for letter in self.answer:
+            letter_dict = [letter_dic for letter_dic in letter_images if letter_dic["letter"] == letter.lower()][0]
+            self.animal_images.append(random.choice(letter_dict["images"]))
+        
+        self.loaded_images = [
+            self.game.transform.scale(self.game.image.load(img_path), (80, 80)) for img_path in self.animal_images
+        ]
+
+        x_offset = 240
+        i = 0
+        for letter in self.answer:
+            input_box = InputBox(self.game, self.setting, x_offset + i * 100, 400, 80, 80, letter)
+            self.entities.append(input_box)
+            i+=1

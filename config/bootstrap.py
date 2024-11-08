@@ -1,4 +1,5 @@
 from game.engines.runtime import Runtime
+from game.engines.container import Container
 from config.setting import Setting
 from game.screens.start import StartMenu
 from game.screens.game import Game
@@ -23,8 +24,11 @@ class Bootstrap():
         
         runtime         = Runtime(setting, game)  
 
-        start_menu  = StartMenu(game, setting)
-        game        = Game(game, setting)
+        start_menu       = StartMenu(game, setting)
+        game             = Game(game, setting)
+        
+        flow_container    = Container(game, setting)
+        flow_container.stage = [0, 1]
+        flow_container.entities.append(flow)
 
-        runtime.start(start_menu, game)
-        return;
+        runtime.start(start_menu, game, flow_container)

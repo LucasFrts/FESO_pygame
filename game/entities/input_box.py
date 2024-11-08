@@ -1,13 +1,16 @@
 from game.entities.entity import Entity
 
 class InputBox(Entity):
+    
+    text = ""
+    active = False
+    correct_text = ""
+
     def __init__(self, pygame, setting, x, y, width, height, correct_text):
         super().__init__(pygame, False)
         self.rect = self.game.Rect(x, y, width, height)
         self.setting = setting
-        self.text = ''
         self.font = setting.fonts.big
-        self.active = False
         self.correct_text = correct_text
         self.events.append(self.game.MOUSEBUTTONDOWN)
         self.events.append(self.game.KEYDOWN)

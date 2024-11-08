@@ -2,7 +2,7 @@ from game.engines.container import Container
 from game.entities.button import Button
 
 class StartMenu(Container):
-    stage = 0
+    stage = [0]
     entities = []
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
