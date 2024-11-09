@@ -2,6 +2,7 @@ from game.engines.container import Container
 from game.entities.input_box import InputBox
 from config.dicts import letter_images, curiosities
 from database.db import insert_ranking
+from game.events.events import get_end_game_event
 import random
 
 class Game(Container):
@@ -13,7 +14,7 @@ class Game(Container):
 
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
-        self.initial_time = 60
+        self.initial_time = 10
         self.time_left = self.initial_time
         self.last_time_update = pygame.time.get_ticks()
         self.curiosities = curiosities
@@ -65,13 +66,12 @@ class Game(Container):
                 #aqui vamos ter que exibir uma tela de vitoria, mostrar a quantidade de pontos e permitir retornar para o menu ou jogar novamente
 
         if self.time_left == 0:
-            #tem que exibir a mensagem de game over
-            #para recomeçar podemos ter algumas alterenativas como resetar os campos e regerar tudo para o jogo poder recomeçar
-            #por enquanto vou apenas salvar os resultados e fechar o jogo
             if self.points > 0:
                 insert_ranking(self.level, self.points, False)
 
-            self.setting.flow.running = False
+            end_game_event = get_end_game_event(self.points, self.game)
+            self.game.event.post(end_game_event)
+            self.setting.flow.stage = 8
         
 
     def generateInputAndText(self):
