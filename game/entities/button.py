@@ -1,6 +1,7 @@
 from game.entities.entity import Entity
 
 class Button(Entity):
+    color_text = None
     def __init__(self, pygame, setting, x, y, width, height, text, color_btn, color_hover, action=None):
         super().__init__(pygame, True)
         self.x = x
@@ -13,7 +14,8 @@ class Button(Entity):
         self.action = action
         self.pressionado = False
         self.setting = setting
-        self.is_hovered = False  
+        self.is_hovered = False 
+        self.color_text = self.setting.colors.white 
         self.events.append(self.game.MOUSEBUTTONDOWN)
         self.events.append(self.game.MOUSEBUTTONUP)
         self.events.append(self.game.MOUSEMOTION)
@@ -25,7 +27,7 @@ class Button(Entity):
         cor_atual = self.color_hover if self.is_hovered else self.color_btn
         self.game.draw.rect(self.setting.screen, cor_atual, (self.x, self.y, self.width, self.height), border_radius=20)
 
-        texto_surf = self.setting.fonts.medium.render(self.text, True, self.setting.colors.white)
+        texto_surf = self.setting.fonts.medium.render(self.text, True, self.color_text)
         texto_rect = texto_surf.get_rect(center=(self.x + self.width // 2, self.y + self.height // 2))
         self.setting.screen.blit(texto_surf, texto_rect)
 

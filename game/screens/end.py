@@ -1,6 +1,8 @@
 from game.engines.container import Container
 from game.entities.entity import Entity
+from game.entities.button import Button
 from game.events.events import END_GAME_EVENT
+from game.events.events import get_reset_game_event
 class End(Container):
     stage = [8]
     entities = []
@@ -13,9 +15,12 @@ class End(Container):
         end_game_listener.do = self.end_game_do
         end_game_listener.draw = self.end_game_draw
         end_game_listener.description_text = ""
+        end_game_listener.stageless = True
         self.entities.append(end_game_listener)
         self.end_game_entity = end_game_listener
-
+        return_button = Button(pygame, self.setting, 0, 10, 300, 50, "Voltar", "#0b0b0b", "#0b0b0b", self.return_to_menu)
+        return_button.color_text = self.setting.colors.green
+        self.entities.append(return_button)
 
     def draw(self):
         self.setting.screen.fill("#0b0b0b")
@@ -36,3 +41,8 @@ class End(Container):
 
     def end_game_draw(self):
         pass
+
+    def return_to_menu(self):
+        self.setting.flow.stage = 0
+        reset_game = get_reset_game_event(self.game)
+        self.game.event.post(reset_game)
