@@ -31,7 +31,7 @@ class StartMenu(Container):
         print("Abrir Tutorial!")
 
     def openRanking(self):
-        print("Abrir Ranking!")
+        self.setting.flow.stage = Stage.RANKING
 
     def close(self):
         self.setting.flow.running    = False

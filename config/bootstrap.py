@@ -5,6 +5,7 @@ from game.screens.start import StartMenu
 from game.screens.game import Game
 from game.entities.flow import Flow
 from game.screens.end import End
+from game.screens.ranking import Ranking
 import pygame
 
 #tem que importar as configs e adicionar em algum tipo de variavel
@@ -26,8 +27,9 @@ class Bootstrap():
 
         start_menu       = StartMenu(game, setting)
         game_screen      = Game(game, setting)
+        ranking          = Ranking(game, setting)
         end_game         = End(game, setting)
         flow_container    = Container(game, setting)
         flow_container.entities.append(flow)
 
-        runtime.start(start_menu, game_screen, end_game, flow_container)
+        runtime.start(start_menu, game_screen, end_game, flow_container, ranking)
