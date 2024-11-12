@@ -1,8 +1,8 @@
 from game.entities.entity import Entity
-
+from game.helpers.enums import Stage
 class Flow(Entity):
     running = False
-    stage = 0
+    stage = Stage.MENU
     level = 0
     
     def __init__(self, pygame):

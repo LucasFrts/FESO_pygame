@@ -1,10 +1,11 @@
 from game.engines.container import Container
 from game.entities.entity import Entity
 from game.entities.button import Button
-from game.events.events import END_GAME_EVENT
-from game.events.events import get_reset_game_event
+from game.helpers.events import END_GAME_EVENT
+from game.helpers.events import get_reset_game_event
+from game.helpers.enums import Stage
 class End(Container):
-    stage = [8]
+    stage = Stage.END
     entities = []
     end_game_entity = None
 
@@ -27,7 +28,7 @@ class End(Container):
         text            = "FIM DO JOGO"
         title_surface   = self.setting.fonts.bigger.render(text, True, self.setting.colors.green)
         title_rect      = title_surface.get_rect(center=(self.setting.screen.get_width() // 2, 100))
-        description_surface   = self.setting.fonts.medium.render(self.end_game_entity.description_text, True, self.setting.colors.green)
+        description_surface   = self.setting.fonts.medium.render(self.end_game_entity.description_text, True, self.setting.colors.white)
         description_rect      = description_surface.get_rect(center=(self.setting.screen.get_width() // 2, 300))
         
         self.setting.screen.blit(title_surface, title_rect)
@@ -43,6 +44,6 @@ class End(Container):
         pass
 
     def return_to_menu(self):
-        self.setting.flow.stage = 0
+        self.setting.flow.stage = Stage.MENU
         reset_game = get_reset_game_event(self.game)
         self.game.event.post(reset_game)

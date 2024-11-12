@@ -1,8 +1,8 @@
 from game.engines.container import Container
 from game.entities.button import Button
-
+from game.helpers.enums import Stage
 class StartMenu(Container):
-    stage = [0]
+    stage = Stage.MENU
     entities = []
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
@@ -25,7 +25,7 @@ class StartMenu(Container):
         self.setting.screen.blit(title_surface, title_rect)
 
     def startGame(self):
-        self.setting.flow.stage = 1
+        self.setting.flow.stage = Stage.GAME
 
     def openTutorial(self):
         print("Abrir Tutorial!")

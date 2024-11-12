@@ -2,13 +2,13 @@ from game.engines.container import Container
 from game.entities.input_box import InputBox
 from config.dicts import letter_images, curiosities
 from database.db import insert_ranking
-from game.events.events import get_end_game_event, RESET_GAME_EVENT
+from game.helpers.events import get_end_game_event, RESET_GAME_EVENT
 from game.entities.entity import Entity
-
+from game.helpers.enums import Stage
 import random
 
 class Game(Container):
-    stage = [1]
+    stage = Stage.GAME
     entities = []
     level = 1
     points = 0
@@ -81,7 +81,7 @@ class Game(Container):
 
             end_game_event = get_end_game_event(self.points, self.game)
             self.game.event.post(end_game_event)
-            self.setting.flow.stage = 8
+            self.setting.flow.stage = Stage.END
         
 
     def generateInputAndText(self):
@@ -118,4 +118,4 @@ class Game(Container):
             self.points = 0
             self.level = 1
             self.generateInputAndText()
-            self.setting.stage = 0
+            self.setting.stage = Stage.MENU

@@ -17,11 +17,11 @@ class Runtime():
             for event in self.pygame.event.get():
                 for artefact in self.containers:
                     for registered in artefact.entities:
-                        if event.type in registered.events and (self.settings.flow.stage in artefact.stage or registered.stageless):
+                        if event.type in registered.events and (self.settings.flow.stage == artefact.stage or registered.stageless):
                             registered.do(event)
 
             for container in self.containers:
-                if self.settings.flow.stage in container.stage:
+                if self.settings.flow.stage == container.stage:
                     container.render()
 
             self.pygame.display.flip()

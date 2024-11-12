@@ -1,5 +1,5 @@
 class Container:
-    stage = []
+    stage = None
     game = None
     setting = None
     entities = []
