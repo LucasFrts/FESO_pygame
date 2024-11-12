@@ -58,11 +58,6 @@ class Ranking(Container):
             y_position += line_height  
 
 
-       
-    def menuButtonFactory(self, position_y, text, action):
-        return Button(self.game, self.setting, 25, position_y, 150, 40, text, self.setting.colors.brown, self.setting.colors.light_brown, action)
-    
-
     def draw_table_header(self, header_texts, y_position, height):
         """Função para desenhar o cabeçalho da tabela."""
         font = self.setting.fonts.small
