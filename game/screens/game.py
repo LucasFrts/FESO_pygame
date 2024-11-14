@@ -107,7 +107,7 @@ class Game(Container):
         for i, letter in enumerate(self.answer):
             x_pos = start_x + i * 100
             self.setting.screen.blit(self.loaded_images[i], (x_pos, 200))
-            input_box = InputBox(self.game, self.setting, x_pos, 400, 80, 80, letter)
+            input_box = InputBox(self.game, self.setting, x_pos, 400, 80, 80, letter, i, len(self.answer) - 1)
             self.entities.append(input_box)
 
     def reset_game(self, event):
