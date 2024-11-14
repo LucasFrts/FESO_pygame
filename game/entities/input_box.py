@@ -43,7 +43,7 @@ class InputBox(Entity):
                 elif event.key == self.game.K_RIGHT:
                     if self.position + 1 <= self.limit:
                         self.goto_event(1)
-                else:
+                elif event.unicode.isalpha():
                     self.text = event.unicode.upper()
                     if self.position + 1 <= self.limit:
                         self.goto_event(1)
