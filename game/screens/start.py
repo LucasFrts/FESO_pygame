@@ -28,7 +28,7 @@ class StartMenu(Container):
         self.setting.flow.stage = Stage.CHOOSE_DIFICULT
 
     def openTutorial(self):
-        print("Abrir Tutorial!")
+        self.setting.flow.stage = Stage.TUTORIAL
 
     def openRanking(self):
         self.setting.flow.stage = Stage.RANKING

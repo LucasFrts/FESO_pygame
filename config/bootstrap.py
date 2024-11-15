@@ -7,6 +7,8 @@ from game.screens.chose_dificulty import Choose_Dificult
 from game.entities.flow import Flow
 from game.screens.end import End
 from game.screens.ranking import Ranking
+from game.screens.tutorial import Tutorial
+from game.screens.tutorial_game import Tutorial_Game
 import pygame
 
 #tem que importar as configs e adicionar em algum tipo de variavel
@@ -30,8 +32,10 @@ class Bootstrap():
         choose_dificulty = Choose_Dificult(game, setting)
         game_screen      = Game(game, setting)
         ranking          = Ranking(game, setting)
+        tutorial         = Tutorial(game, setting)
+        tutorial_game    = Tutorial_Game(game, setting)
         end_game         = End(game, setting)
         flow_container    = Container(game, setting)
         flow_container.entities.append(flow)
 
-        runtime.start(start_menu, choose_dificulty, game_screen, end_game, flow_container, ranking)
+        runtime.start(start_menu, choose_dificulty, game_screen, end_game, flow_container, ranking, tutorial, tutorial_game)
