@@ -5,6 +5,7 @@ class Setting():
     fonts = None
     colors = None
     flow = None
+    dificulty = None
 
     def __init__(self, pygame):
         fonts               = lambda: None

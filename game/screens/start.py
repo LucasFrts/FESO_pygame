@@ -6,7 +6,7 @@ class StartMenu(Container):
     entities = []
     def __init__(self, pygame, setting):
         super().__init__(pygame, setting)
-        startBtn    = self.menuButtonFactory(200, "Iniciar Jogo", self.startGame)
+        startBtn    = self.menuButtonFactory(200, "Iniciar Jogo", self.chooseDificulty)
         tutorialBtn = self.menuButtonFactory(270, "Tutorial", self.openTutorial)
         rankingBtn  = self.menuButtonFactory(340, "Ranking", self.openRanking) 
         closeBtn    = self.menuButtonFactory(410, "Sair", self.close)
@@ -24,8 +24,8 @@ class StartMenu(Container):
 
         self.setting.screen.blit(title_surface, title_rect)
 
-    def startGame(self):
-        self.setting.flow.stage = Stage.GAME
+    def chooseDificulty(self):
+        self.setting.flow.stage = Stage.CHOOSE_DIFICULT
 
     def openTutorial(self):
         print("Abrir Tutorial!")

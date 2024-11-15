@@ -17,10 +17,10 @@ class End(Container):
         end_game_listener.draw = self.end_game_draw
         end_game_listener.description_text = ""
         end_game_listener.stageless = True
-        self.entities.append(end_game_listener)
-        self.end_game_entity = end_game_listener
         return_button = Button(pygame, self.setting, 25, 10, 150, 40, "Voltar", "#0b0b0b", "#0b0b0b", self.return_to_menu)
         return_button.color_text = self.setting.colors.green
+        self.entities.append(end_game_listener)
+        self.end_game_entity = end_game_listener
         self.entities.append(return_button)
 
     def draw(self):
