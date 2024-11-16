@@ -19,7 +19,6 @@ letter_images = [
     {"letter": "t", "images": ['./assets/images/animals/tubarao.jpg', './assets/images/animals/elefante.jpg', './assets/images/animals/gato.jpg', './assets/images/animals/pato.jpg']},
     {"letter": "u", "images": ['./assets/images/animals/urso.jpg', './assets/images/animals/coruja.jpg', './assets/images/animals/crocodilo.jpg', './assets/images/animals/dinossauro.jpg', './assets/images/animals/tubarao.jpg']},
     {"letter": "v", "images": ['./assets/images/animals/veado.jpg', './assets/images/animals/cavalo.jpg']},
-    {"letter": "x", "images": ['./assets/images/animals/peixe.jpg']},
     {"letter": "z", "images": ['./assets/images/animals/zebra.jpg']}
 ]
 
@@ -76,7 +75,6 @@ curiosities = [
     {"text": "Usado por muitos animais para proteger e alimentar seus filhotes.", "answer": "LEITE"},
     {"text": "Os pássaros utilizam esse material para construir seus ninhos.", "answer": "GRAMA"},
     {"text": "Esse material, produzido por ovelhas, é utilizado para fazer roupas quentes.", "answer": "LA"},
-    {"text": "Essa substância ajuda os peixes a respirar debaixo d'água.", "answer": "OXIGENIO"},
     {"text": "Os animais herbívoros se alimentam principalmente deste tipo de planta.", "answer": "CAPIM"},
     {"text": "Essa parte do corpo dos gatos ajuda a detectar movimentos e objetos no escuro.", "answer": "BIGODES"},
     {"text": "Esse elemento é essencial para a sobrevivência dos animais aquáticos.", "answer": "AGUA"},

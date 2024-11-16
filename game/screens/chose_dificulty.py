@@ -2,7 +2,7 @@ from game.engines.container import Container
 from game.entities.entity import Entity
 from game.entities.button import Button
 from game.helpers.enums import Stage,Dificulty
-
+from game.helpers.events import get_start_game_event
 class Choose_Dificult(Container):
     stage = Stage.CHOOSE_DIFICULT
     entities = []
@@ -46,6 +46,9 @@ class Choose_Dificult(Container):
 
     def choose(self, dificulty):
         self.setting.dificulty = dificulty
+
+        start_event = get_start_game_event(self.game)
+        self.game.event.post(start_event)
         self.setting.flow.stage = Stage.GAME
 
     def return_to_menu(self):
