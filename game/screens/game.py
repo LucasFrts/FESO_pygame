@@ -74,7 +74,11 @@ class Game(Container):
             if inputed_text == self.answer:
                 self.points += self.points_multiplicator * self.time_left
                 if len(self.curiosities) > 0:
+                    print(self.time_left)
                     self.time_left += 30
+                    if self.time_left > 60:
+                        self.time_left = 60
+                        
                     self.level += 1
                     self.generateInputAndText()
                 else:
