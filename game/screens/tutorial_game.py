@@ -23,16 +23,6 @@ class Tutorial_Game(Container):
         self.last_time_update = pygame.time.get_ticks()
         self.curiosities = curiosities
 
-        
-        
-
-
-        reset_game_listener = Entity(pygame)
-        reset_game_listener.events.append(RESET_GAME_EVENT)
-        reset_game_listener.do = self.reset_game
-        reset_game_listener.stageless = True
-        self.reset_game_listener = reset_game_listener
-        self.entities.append(reset_game_listener)
         self.generateInputAndText()
         
     def finalizar_tutorial(self):
@@ -107,10 +97,7 @@ class Tutorial_Game(Container):
             if isinstance(entity, InputBox):
                 inputed_text += entity.text  
         if inputed_text == self.answer:
-            if len(self.curiosities) > 0:
-                end_game_event = get_end_game_event(self.points, self.game)
-                self.game.event.post(end_game_event)
-                self.setting.flow.stage = Stage.END
+            self.finalizar_tutorial()
 
     def generateInputAndText(self):
         curiosity = self.curiosities[1]
@@ -138,12 +125,3 @@ class Tutorial_Game(Container):
             input_box = InputBox(self.game, self.setting, x_pos, 400, 80, 80, letter, i, len(self.answer) - 1)
             self.entities.append(input_box)
             
-    def reset_game(self, event):
-        if event.type == RESET_GAME_EVENT:
-            self.time_left = self.initial_time
-            self.last_time_update = self.game.time.get_ticks()
-            self.curiosities = curiosities
-            self.points = 0
-            self.level = 1
-            self.generateInputAndText()
-            self.setting.stage = Stage.MENU
