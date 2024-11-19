@@ -22,11 +22,11 @@ class Tutorial_Game(Container):
         self.time_left = self.initial_time
         self.last_time_update = pygame.time.get_ticks()
         self.curiosities = curiosities
-
         self.generateInputAndText()
         
     def finalizar_tutorial(self):
         self.setting.flow.stage = Stage.MENU
+        self.generateInputAndText()
 
     def draw(self):
         self.setting.screen.fill("#0b0b0b")
