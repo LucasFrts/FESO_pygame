@@ -14,7 +14,7 @@ def insert_ranking(levels, score, finished):
 
 def get_ranking():
     cursor  = get_connection()
-    res = cursor.execute("SELECT * FROM ranking ORDER BY score DESC LIMIT 10")
+    res = cursor.execute("SELECT levels, score, finished FROM ranking ORDER BY score DESC LIMIT 10")
     data = res.fetchall()  
     cursor.close()
     return data

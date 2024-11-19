@@ -27,7 +27,8 @@ class Ranking(Container):
         self.setting.screen.blit(title_surface, title_rect)
 
         # Cabeçalho das colunas do ranking
-        header_text = ["Posição", "Level", "Score", "Pts."]
+        
+        header_text = ["Posição", "Level", "Score"]
         header_height = 30  
         y_position = 250  
 
@@ -38,7 +39,7 @@ class Ranking(Container):
         line_height = 30  
         border_radius = 5  
 
-        column_width = (self.setting.screen.get_width() // len(header_text)) - 150  
+        column_width = (self.setting.screen.get_width() // len(header_text)) - 200  
 
         total_table_width = column_width * len(header_text)
         table_start_x = (self.setting.screen.get_width() - total_table_width) // 2
@@ -49,9 +50,8 @@ class Ranking(Container):
             rank = i + 1
             levels = row[0]  
             score = row[1]  
-            finished = row[2]  
 
-            data = [str(rank), str(levels), str(score), str(finished)]
+            data = [str(rank), str(levels), str(score)]
 
             self.draw_table_row(data, y_position, line_height, column_width, border_radius, table_start_x)
 
@@ -61,7 +61,7 @@ class Ranking(Container):
     def draw_table_header(self, header_texts, y_position, height):
         """Função para desenhar o cabeçalho da tabela."""
         font = self.setting.fonts.small
-        column_width = (self.setting.screen.get_width() // len(header_texts)) - 150  
+        column_width = (self.setting.screen.get_width() // len(header_texts)) - 200  
 
         total_table_width = column_width * len(header_texts)
         table_start_x = (self.setting.screen.get_width() - total_table_width) // 2
